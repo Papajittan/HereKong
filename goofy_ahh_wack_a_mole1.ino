@@ -1,12 +1,12 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
-LiquidCrystal_I2C lcd(0x27 , 16, 2);
+LiquidCrystal_I2C lcd(34 , 16, 2);
 
 const int redLED = 2; const int blueLED = 3; const int greenLED = 4; const int yellowLED = 5; const int redButton = 9; const int blueButton = 8; const int greenButton = 7; const int yellowButton = 6; unsigned long Time = millis(); int over = 2000; bool overr = false;bool start = false;int score = 0;bool rediff = false; 
 
 void setup()
 {
-  pinMode(2, OUTPUT); pinMode(3, OUTPUT); pinMode(4, OUTPUT); pinMode(5, OUTPUT); pinMode(9, INPUT_PULLUP); pinMode(8, INPUT_PULLUP); pinMode(7, INPUT_PULLUP); pinMode(6, INPUT_PULLUP);
+  pinMode(2, OUTPUT); pinMode(3, OUTPUT); pinMode(4, OUTPUT); pinMode(5, OUTPUT); pinMode(9, INPUT); pinMode(8, INPUT); pinMode(7, INPUT); pinMode(6, INPUT);
 }
 
 void loop() {
@@ -25,7 +25,7 @@ void loop() {
     digitalWrite(greenLED, LOW);
     digitalWrite(yellowLED, LOW);
     delay(500);
-    if (digitalRead(blueButton) == LOW) {
+    if (digitalRead(blueButton) == HIGH) {
     digitalWrite(blueLED, HIGH);
     over = 500;
     lcd.init();
@@ -38,7 +38,7 @@ void loop() {
     digitalWrite(blueLED, LOW);
       start = true;
       break;
-  } else if (digitalRead(greenButton) == LOW) {
+  } else if (digitalRead(greenButton) == HIGH) {
     digitalWrite(greenLED, HIGH);
     over = 1000;
     lcd.init();
@@ -51,7 +51,7 @@ void loop() {
     digitalWrite(greenLED, LOW);
       start = true;
       break;
-  } else if (digitalRead(yellowButton) == LOW) {
+  } else if (digitalRead(yellowButton) == HIGH) {
     digitalWrite(yellowLED, HIGH);
     over = 2000;
     lcd.init();
@@ -80,17 +80,17 @@ void loop() {
     digitalWrite(redLED, LOW);
     digitalWrite(yellowLED, LOW);
     delay(500);
-    if (digitalRead(redButton) == LOW || digitalRead(yellowButton) == LOW) {
+    if (digitalRead(redButton) == HIGH || digitalRead(yellowButton) == HIGH) {
       break;
     }
   }
-  if(digitalRead(yellowButton) == LOW ){
+  if(digitalRead(yellowButton) == HIGH ){
       digitalWrite(yellowLED, HIGH);
       delay(2000);
       digitalWrite(yellowLED, LOW);
       start = false;
   }
-    if (digitalRead(redButton) == LOW) {
+    if (digitalRead(redButton) == HIGH) {
     lcd.init();
     lcd.backlight();
     digitalWrite(redLED, HIGH);
@@ -125,14 +125,14 @@ void loop() {
         }
         if (digitalRead(redLED) == HIGH)
         {
-          if (digitalRead(redButton) == LOW)
+          if (digitalRead(redButton) == HIGH)
           {
-            while(digitalRead(redButton) == LOW);
+            while(digitalRead(redButton) == HIGH);
             digitalWrite(redLED, LOW);
             lcd.setCursor(7, 0);
             score++;
             lcd.print(score);
-          } else if (digitalRead(blueButton) == LOW || digitalRead(greenButton) == LOW || digitalRead(yellowButton) == LOW) {
+          } else if (digitalRead(blueButton) == HIGH || digitalRead(greenButton) == HIGH || digitalRead(yellowButton) == HIGH) {
             overr = true;
             break;
           }
@@ -140,14 +140,14 @@ void loop() {
 
         if (digitalRead(blueLED) == HIGH)
         {
-          if (digitalRead(blueButton) == LOW)
+          if (digitalRead(blueButton) == HIGH)
           {
-            while(digitalRead(blueButton) == LOW);
+            while(digitalRead(blueButton) == HIGH);
             digitalWrite(blueLED, LOW);
             lcd.setCursor(7, 0);
             score++;
             lcd.print(score);
-          } else if (digitalRead(redButton) == LOW || digitalRead(greenButton) == LOW || digitalRead(yellowButton) == LOW) {
+          } else if (digitalRead(redButton) == HIGH || digitalRead(greenButton) == HIGH || digitalRead(yellowButton) == HIGH) {
             overr = true;
             break;
           }
@@ -155,14 +155,14 @@ void loop() {
 
         if (digitalRead(greenLED) == HIGH)
         {
-          if (digitalRead(greenButton) == LOW)
+          if (digitalRead(greenButton) == HIGH)
           {
-            while(digitalRead(greenButton) == LOW);
+            while(digitalRead(greenButton) == HIGH);
             digitalWrite(greenLED, LOW);
             lcd.setCursor(7, 0);
             score++;
             lcd.print(score);
-          } else if (digitalRead(redButton) == LOW || digitalRead(blueButton) == LOW || digitalRead(yellowButton) == LOW) {
+          } else if (digitalRead(redButton) == HIGH || digitalRead(blueButton) == HIGH || digitalRead(yellowButton) == HIGH) {
             overr = true;
             break;
           }
@@ -170,15 +170,15 @@ void loop() {
 
         if (digitalRead(yellowLED) == HIGH)
         {
-          if (digitalRead(yellowButton) == LOW)
+          if (digitalRead(yellowButton) == HIGH)
           {
-            while(digitalRead(yellowButton) == LOW);
-            digitalWrite(yellowLED, LOW);
+            while(digitalRead(yellowButton) == HIGH);
+            digitalWrite(yellowLED, HIGH);
             lcd.setCursor(7, 0);
             score++;
             lcd.print(score);
             
-          } else if (digitalRead(redButton) == LOW || digitalRead(blueButton) == LOW || digitalRead(greenButton) == LOW) {
+          } else if (digitalRead(redButton) == HIGH || digitalRead(blueButton) == HIGH || digitalRead(greenButton) == HIGH) {
             overr = true;
             break;
           }
@@ -220,10 +220,10 @@ void loop() {
         digitalWrite(redLED, LOW);
         digitalWrite(yellowLED, LOW);
         delay(500);
-        if(digitalRead(redButton) == LOW){
-          start = false;3
+        if(digitalRead(redButton) == HIGH){
+          start = false;
           break;
-        }else if(digitalRead(yellowButton) == LOW){
+        }else if(digitalRead(yellowButton) == HIGH){
           rediff = true;
           start = false;
           break;

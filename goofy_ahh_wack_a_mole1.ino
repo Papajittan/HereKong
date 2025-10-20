@@ -230,24 +230,7 @@ void loop() {
         }
       }
     }
-//    } else {
-//      lcd.init();
-//      lcd.backlight();
-//      lcd.setCursor(4, 0);
-//      lcd.print("YOU WON!");
-//      lcd.setCursor(0, 1);
-//      lcd.print("Your score: ");
-//      lcd.print(score);
-//      overr = false;
-//      start = false;
-//      while(true){
-//        digitalWrite(redLED, HIGH);
-//        delay(500);
-//        digitalWrite(redLED, LOW);
-//        delay(500);
-//        if(digitalRead(redButton) == LOW){
-//          break;
-//        }
-//      }
+
     }
   }
+
